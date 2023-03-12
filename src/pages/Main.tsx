@@ -1,8 +1,8 @@
 import { Flex } from '@chakra-ui/react';
 
-import Filter from '../components/Filter';
 import Header from '../components/Header';
 import Product from '../components/Product';
+import Filter from '../components/filters/Filter';
 
 function Main() {
   return (

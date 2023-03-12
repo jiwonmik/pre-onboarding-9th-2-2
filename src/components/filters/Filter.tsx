@@ -1,7 +1,7 @@
 import { Flex } from '@chakra-ui/react';
 
-import LocationFilter from './filters/Location';
-import PriceFilter from './filters/Price';
+import LocationFilter from './Location';
+import PriceFilter from './Price';
 
 function Filter() {
   return (

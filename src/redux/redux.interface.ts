@@ -20,22 +20,29 @@ export interface ILocationFilter {
   clicked: boolean;
 }
 
-export type IPrice = {
+export type IPriceFilter = {
   min: number;
   max: number;
 };
 
-export const productList: IProduct[] = mockData.travelInfo;
+export interface IProductSlice {
+  products: IProduct[];
+  locationFilter: ILocationFilter[];
+  priceFilter: IPriceFilter;
+}
 
-const locationCategory = [...new Set(productList.map((product) => product.spaceCategory))] as const;
-export const locationInit = locationCategory.map((a) => ({
-  ['location']: a,
+export const PRODUCT_LIST: IProduct[] = mockData.travelInfo;
+
+const locationCategory = [...new Set(PRODUCT_LIST.map((product) => product.spaceCategory))];
+export const LOCATION_INIT = locationCategory.map((location) => ({
+  ['location']: location,
   ['clicked']: true,
-})) as ILocationFilter[];
+}));
 
-const uniquePrices = [...new Set(productList.map((product) => product.price))].sort(
+const uniquePrices = [...new Set(PRODUCT_LIST.map((product) => product.price))].sort(
   (a, b) => a - b
 );
-export const priceSteps = uniquePrices.filter((_, i) => i % 2 == 0);
-export const maxPrice = Math.max(...uniquePrices);
-export const priceStep = priceSteps[0];
+export const MAX_PRICE = Math.max(...uniquePrices);
+export const PRICE_INIT = { min: 0, max: MAX_PRICE };
+export const PRICE_STEPS = uniquePrices.filter((_, i) => i % 2 == 0);
+export const PRICE_STEP = PRICE_STEPS[0];

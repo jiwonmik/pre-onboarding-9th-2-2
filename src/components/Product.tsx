@@ -10,19 +10,39 @@ import {
   Text,
   useDisclosure,
 } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { useAppDispatch } from '../redux/hook/redux.hook';
 import { useAppSelector } from '../redux/hook/redux.hook';
-import { IProduct } from '../redux/redux.interface';
+import { IProduct, IProductSlice } from '../redux/redux.interface';
 import { increase } from '../redux/slice/cartslice';
 import { formatCurrency } from '../utils/formatCurrency';
 import ProductModal from './Modal';
 
 function Product() {
   const productList = useAppSelector((state) => state.product);
+  const locationFilter = useAppSelector((state) => state.product.locationFilter);
+  const priceFilter = useAppSelector((state) => state.product.priceFilter);
+
+  const clickedLoaction = locationFilter
+    .filter((location) => location.clicked == true)
+    .map((target) => target.location);
+
+  const [showProducts, setShowProducts] = useState<IProduct[]>(productList.products);
+  useEffect(() => {
+    setShowProducts((prev) => {
+      const locationFiltered = productList.products.filter((product) =>
+        clickedLoaction.includes(product.spaceCategory)
+      );
+      const finalFiltered = locationFiltered.filter(
+        (product) => product.price >= priceFilter.min && product.price <= priceFilter.max
+      );
+      return finalFiltered;
+    });
+  }, [locationFilter, priceFilter]);
+
   const cartList = useAppSelector((state) => state.cart);
 
   const dispatch = useAppDispatch();
@@ -42,7 +62,7 @@ function Product() {
   return (
     <Flex>
       <SimpleGrid mb={20} spacing={10} templateColumns="repeat(4, minmax(280px, 1fr))">
-        {productList.map((item, index) => (
+        {showProducts.map((item, index) => (
           <Box
             display={'flex'}
             flexDir={'column'}

@@ -11,33 +11,17 @@ import {
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-import { useAppDispatch } from '../../redux/hook/redux.hook';
+import { useAppDispatch, useAppSelector } from '../../redux/hook/redux.hook';
 import { ILocationFilter } from '../../redux/redux.interface';
-import { locationInit } from '../../redux/redux.interface';
-import { setLocation } from '../../redux/slice/productslice';
+import { filterLocation } from '../../redux/slice/productslice';
 
 const LocationFilter = () => {
-  const [locationFilter, setLocationFilter] = useState<ILocationFilter[]>(locationInit);
+  const locationFilter = useAppSelector((state) => state.product.locationFilter);
   const dispatch = useAppDispatch();
 
-  const updateLocation = (e: React.ChangeEvent<HTMLInputElement>, location: string) => {
-    setLocationFilter((prev) => {
-      const result = prev.map((product) =>
-        product.location == location ? { ...product, clicked: e.target.checked } : product
-      );
-      return result;
-    });
+  const updateLocation = (e: React.ChangeEvent<HTMLInputElement>, item: ILocationFilter) => {
+    dispatch(filterLocation({ location: item.location, clicked: e.target.checked }));
   };
-
-  const filteredLocation = locationFilter
-    .filter((location) => location.clicked)
-    .map((location) => location.location);
-
-  useEffect(() => {
-    dispatch(setLocation(filteredLocation));
-  }, [locationFilter]);
-
-  console.log(locationFilter);
 
   return (
     <Menu>
@@ -52,7 +36,7 @@ const LocationFilter = () => {
                 key={index}
                 value={location.location}
                 isChecked={location.clicked}
-                onChange={(e) => updateLocation(e, location.location)}
+                onChange={(e) => updateLocation(e, location)}
               >
                 {location.location}
               </Checkbox>
