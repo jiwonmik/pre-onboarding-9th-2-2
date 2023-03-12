@@ -2,6 +2,7 @@ import {
   Badge,
   Button,
   Flex,
+  Heading,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -38,16 +39,21 @@ const PriceFilter = () => {
       <Button ml={5} onClick={onOpen}>
         가격 범위
       </Button>
-      <Modal isOpen={isOpen} onClose={onClose} isCentered>
+      <Modal size={'sm'} isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader fontSize="28px" fontWeight="800" mb="2px" mt="30px">
+          <ModalHeader mx={5} fontSize="28px" fontWeight="800" mb="2px" mt="30px">
             가격 범위 설정
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Flex mx={10} mb={5} flexDir={'column'}>
-              <Text mb={5}>선택하신 가격 범위</Text>
+            <Flex mx={5} mb={10} flexDir={'column'}>
+              <Heading size={'sm'} mb={3}>
+                선택하신 가격 범위
+              </Heading>
+              <Text mb={5}>
+                ₩{formatCurrency(priceFilter.min)} ~ ₩{formatCurrency(priceFilter.max)}
+              </Text>
               <RangeSlider
                 w="full"
                 aria-label={['min', 'max']}
@@ -56,7 +62,7 @@ const PriceFilter = () => {
                 min={0}
                 max={MAX_PRICE}
                 step={PRICE_STEP}
-                minStepsBetweenThumbs={10}
+                minStepsBetweenThumbs={5}
                 onChangeEnd={(e) => {
                   sliderChange({ min: e[0], max: e[1] });
                 }}
@@ -75,7 +81,7 @@ const PriceFilter = () => {
                     </Badge>
                   );
                 })}
-              </Flex>{' '}
+              </Flex>
             </Flex>
           </ModalBody>
         </ModalContent>

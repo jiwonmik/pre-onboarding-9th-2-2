@@ -47,12 +47,6 @@ function Product() {
 
   const dispatch = useAppDispatch();
   const onClickHandle = (item: IProduct) => {
-    const product = cartList.find((product) => product.idx == item.idx);
-    if (product && product?.count == item.maximumPurchases) {
-      toast.error('예약 가능 수량을 초과하였습니다.');
-      return;
-    }
-    toast.success('상품을 장바구니에 담았습니다.');
     dispatch(increase(item));
   };
 
@@ -122,19 +116,6 @@ function Product() {
           </Box>
         ))}
       </SimpleGrid>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-        limit={2}
-      />
     </Flex>
   );
 }

@@ -9,8 +9,7 @@ import {
   Stack,
   Text,
 } from '@chakra-ui/react';
-import { useEffect } from 'react';
-import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import { useAppDispatch, useAppSelector } from '../redux/hook/redux.hook';
 import { ICart } from '../redux/redux.interface';
