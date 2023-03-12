@@ -1,7 +1,7 @@
 import { Flex, Heading } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 
-import Cart from './cart/Cart';
+import Cart from './Cart';
 
 function Header() {
   return (

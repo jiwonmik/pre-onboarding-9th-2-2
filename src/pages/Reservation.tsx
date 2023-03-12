@@ -27,7 +27,7 @@ function Reservation() {
 
   const decreaseProduct = (item: ICart) => {
     if (item.count == 1) {
-      dispatch(remove(item.idx));
+      return;
     }
     dispatch(decrease(item));
   };
