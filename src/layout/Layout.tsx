@@ -1,10 +1,20 @@
 import { Flex } from '@chakra-ui/react';
-import { Outlet } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Outlet, redirect, useLocation, useNavigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
 import Header from '../components/Header';
 
 function Layout() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (location.pathname == '/') {
+      navigate('/main');
+    }
+  });
+
   return (
     <>
       <Flex flexDirection={'column'}>
