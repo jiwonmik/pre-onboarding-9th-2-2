@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import EmptyCart from './components/cart/EmptyCart';
+import Layout from './layout/Layout';
+import EmptyCart from './pages/EmptyReservation';
 import Main from './pages/Main';
 import NotFound from './pages/NotFound';
 import Reservation from './pages/Reservation';
@@ -8,19 +9,20 @@ import Reservation from './pages/Reservation';
 const router = createBrowserRouter([
   {
     path: '/', // Container for all Routes
-    element: <Main />,
+    element: <Layout />,
     children: [
       {
         path: 'main',
         element: <Main />,
         errorElement: <NotFound />,
       },
+      {
+        path: 'reservation',
+        element: <Reservation />,
+        errorElement: <NotFound />,
+      },
     ],
     errorElement: <NotFound />,
-  },
-  {
-    path: '/reservation',
-    element: <Reservation />,
   },
 ]);
 

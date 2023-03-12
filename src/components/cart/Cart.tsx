@@ -20,7 +20,7 @@ function Cart() {
         alignItems="center"
         justifyContent="center"
         position="absolute"
-        right="90px"
+        right="70px"
         top="8px"
         width="20px"
         background="#383e47"

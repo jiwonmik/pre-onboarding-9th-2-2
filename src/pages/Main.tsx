@@ -6,8 +6,7 @@ import Filter from '../components/filters/Filter';
 
 function Main() {
   return (
-    <Flex flexDirection={'column'} mx={20} my={10}>
-      <Header />
+    <Flex flexDirection={'column'} mx={20} my={5}>
       <Flex w="full" flexDirection={'column'} mt={10}>
         <Filter />
         <Product />

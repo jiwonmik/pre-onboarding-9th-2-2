@@ -9,13 +9,14 @@ import {
   Stack,
   Text,
 } from '@chakra-ui/react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
-import EmptyCart from '../components/cart/EmptyCart';
 import { useAppDispatch, useAppSelector } from '../redux/hook/redux.hook';
 import { ICart } from '../redux/redux.interface';
 import { decrease, increase, remove } from '../redux/slice/cartslice';
 import { formatCurrency } from '../utils/formatCurrency';
+import EmptyCart from './EmptyReservation';
 
 function Reservation() {
   const cartList = useAppSelector((state) => state.cart);
@@ -37,19 +38,11 @@ function Reservation() {
     dispatch(remove(idx));
   };
 
-  const navigate = useNavigate();
-  const goBack = () => {
-    navigate(-1);
-  };
-
   return (
     <>
       {cartList.length !== 0 ? (
         <Flex flexDir="column" justifyContent={'center'} alignItems={'center'} marginTop="10">
           <Flex marginBottom="5">
-            <Button onClick={goBack} position={'absolute'} left={60}>
-              돌아가기
-            </Button>
             <Heading>예약 내역</Heading>
           </Flex>
           {cartList.map((item, index) => (

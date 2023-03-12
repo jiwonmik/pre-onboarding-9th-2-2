@@ -20,6 +20,7 @@ import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../../redux/hook/redux.hook';
 import { IPriceFilter, MAX_PRICE, PRICE_STEP, PRICE_STEPS } from '../../redux/redux.interface';
 import { filterPrice } from '../../redux/slice/productslice';
+import { formatCurrency } from '../../utils/formatCurrency';
 
 const PriceFilter = () => {
   const priceFilter = useAppSelector((state) => state.product.priceFilter);
@@ -70,7 +71,7 @@ const PriceFilter = () => {
                 {PRICE_STEPS.map((step, index) => {
                   return (
                     <Badge key={index} mt="5px" fontSize="sm" color="black">
-                      ₩{step}
+                      ₩{formatCurrency(step)}
                     </Badge>
                   );
                 })}
