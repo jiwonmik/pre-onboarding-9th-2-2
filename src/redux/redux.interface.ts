@@ -33,7 +33,7 @@ export interface IProductSlice {
 
 export const PRODUCT_LIST: IProduct[] = mockData.travelInfo;
 
-const locationCategory = [...new Set(PRODUCT_LIST.map((product) => product.spaceCategory))];
+const locationCategory = ['전체', ...new Set(PRODUCT_LIST.map((product) => product.spaceCategory))];
 export const LOCATION_INIT = locationCategory.map((location) => ({
   ['location']: location,
   ['clicked']: true,

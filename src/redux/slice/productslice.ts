@@ -10,13 +10,21 @@ export const productSlice = createSlice({
     priceFilter: PRICE_INIT,
   },
   reducers: {
+    filterAllLocation: (state, action) => {
+      return {
+        ...state,
+        locationFilter: state.locationFilter.map(function (filter) {
+          return { ...filter, clicked: action.payload };
+        }),
+      };
+    },
     filterLocation: (state, action) => {
       return {
         ...state,
-        locationFilter: state.locationFilter.map((locationObj) =>
-          locationObj.location == action.payload.location
-            ? { ...locationObj, clicked: action.payload.clicked }
-            : locationObj
+        locationFilter: state.locationFilter.map((filter) =>
+          filter.location == action.payload.location
+            ? { ...filter, clicked: action.payload.checked }
+            : filter
         ),
       };
     },
@@ -32,4 +40,4 @@ export const productSlice = createSlice({
   },
 });
 
-export const { filterLocation, filterPrice } = productSlice.actions;
+export const { filterAllLocation, filterLocation, filterPrice } = productSlice.actions;

@@ -12,15 +12,17 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../redux/hook/redux.hook';
-import { ILocationFilter } from '../../redux/redux.interface';
-import { filterLocation } from '../../redux/slice/productslice';
+import { filterAllLocation, filterLocation } from '../../redux/slice/productslice';
 
 const LocationFilter = () => {
   const locationFilter = useAppSelector((state) => state.product.locationFilter);
   const dispatch = useAppDispatch();
-
-  const updateLocation = (e: React.ChangeEvent<HTMLInputElement>, item: ILocationFilter) => {
-    dispatch(filterLocation({ location: item.location, clicked: e.target.checked }));
+  const updateLocation = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value == '전체') {
+      dispatch(filterAllLocation(e.target.checked));
+    } else {
+      dispatch(filterLocation({ location: e.target.value, checked: e.target.checked }));
+    }
   };
 
   return (
@@ -36,7 +38,7 @@ const LocationFilter = () => {
                 key={index}
                 value={location.location}
                 isChecked={location.clicked}
-                onChange={(e) => updateLocation(e, location)}
+                onChange={(e) => updateLocation(e)}
               >
                 {location.location}
               </Checkbox>
