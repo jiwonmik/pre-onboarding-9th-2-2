@@ -1,7 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 
 import Layout from './layout/Layout';
-import EmptyCart from './pages/EmptyReservation';
 import Main from './pages/Main';
 import NotFound from './pages/NotFound';
 import Reservation from './pages/Reservation';

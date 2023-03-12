@@ -8,14 +8,13 @@ import {
   MenuOptionGroup,
   Stack,
 } from '@chakra-ui/react';
-import { useState } from 'react';
-import { useEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../redux/hook/redux.hook';
 import { filterAllLocation, filterLocation } from '../../redux/slice/productslice';
 
 const LocationFilter = () => {
   const locationFilter = useAppSelector((state) => state.product.locationFilter);
+
   const dispatch = useAppDispatch();
   const updateLocation = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value == '전체') {

@@ -28,7 +28,6 @@ const PriceFilter = () => {
 
   const dispatch = useDispatch();
   const sliderChange = (priceRange: IPriceFilter) => {
-    console.log('check', priceRange);
     dispatch(filterPrice(priceRange));
   };
 

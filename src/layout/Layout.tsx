@@ -1,6 +1,6 @@
 import { Flex } from '@chakra-ui/react';
 import { useEffect } from 'react';
-import { Outlet, redirect, useLocation, useNavigate } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
 import Header from '../components/Header';

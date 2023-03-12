@@ -13,7 +13,6 @@ import {
 import { Link } from 'react-router-dom';
 
 import { IProduct } from '../redux/redux.interface';
-import { formatCurrency } from '../utils/formatCurrency';
 
 const ProductModal = ({
   selected,

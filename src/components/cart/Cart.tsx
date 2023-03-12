@@ -6,6 +6,7 @@ import { useAppSelector } from '../../redux/hook/redux.hook';
 
 function Cart() {
   const cartProducts = useAppSelector((state) => state.cart);
+
   const totalQuant = cartProducts.reduce((cnt, object) => {
     return cnt + object.count;
   }, 0);

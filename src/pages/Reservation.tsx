@@ -9,7 +9,6 @@ import {
   Stack,
   Text,
 } from '@chakra-ui/react';
-import { toast } from 'react-toastify';
 
 import { useAppDispatch, useAppSelector } from '../redux/hook/redux.hook';
 import { ICart } from '../redux/redux.interface';

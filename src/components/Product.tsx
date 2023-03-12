@@ -11,12 +11,10 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 import { useAppDispatch } from '../redux/hook/redux.hook';
 import { useAppSelector } from '../redux/hook/redux.hook';
-import { IProduct, IProductSlice } from '../redux/redux.interface';
+import { IProduct } from '../redux/redux.interface';
 import { increase } from '../redux/slice/cartslice';
 import { formatCurrency } from '../utils/formatCurrency';
 import ProductModal from './Modal';
@@ -42,8 +40,6 @@ function Product() {
       return finalFiltered;
     });
   }, [locationFilter, priceFilter]);
-
-  const cartList = useAppSelector((state) => state.cart);
 
   const dispatch = useAppDispatch();
   const onClickHandle = (item: IProduct) => {
